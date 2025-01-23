@@ -1,0 +1,11 @@
+# Ignore __pycache__ directories in all folders
+**/__pycache__/
+
+# Ignore NEAT checkpoint files
+neat-checkpoint-*
+
+# Ignore IDE-specific files
+.vscode/
+
+# Ignore pytest cache
+.pytest_cache/
