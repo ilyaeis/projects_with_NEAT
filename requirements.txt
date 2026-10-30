@@ -1,2 +1,7 @@
-pygame
-neat-python
+# Tested with Python 3.11
+pygame==2.6.1
+neat-python==0.92  # the configs use the 0.92 format; neat-python 2.x rejects them
+
+# only for tools/ (GIF recording and fitness plots)
+pillow==13.0.0
+matplotlib==3.11.2
