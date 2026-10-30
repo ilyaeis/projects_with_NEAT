@@ -18,22 +18,27 @@ class NeatSimulation:
         self.create_objects(genomes, config)
         running: bool = True
         obstacle_ind: int = 0
+        counter: int = 0
         
         while running:
             if not self.obstacles:
                 raise IndexError 
             if not self.birds:
                 return
+            # A perfect bird would fly forever, so stop at the score cap.
+            if counter >= DATA.MAX_SCORE:
+                return
             
             if self.obstacles[0].passed_x(0):
                 obstacle_ind = 0
                 self.obstacles.pop(0)
             if self.obstacles[0].passed_x(self.birds[0].x) and obstacle_ind == 0:
+                counter += 1
                 for bird in self.birds:
                     bird.reward(10)
                 obstacle_ind = 1
                 
-            for bird in self.birds:
+            for bird in self.birds[:]:
                 if self.obstacles[obstacle_ind].check_bird_collision(bird) or bird.check_screen_collision():
                     bird.punish(5)
                     self.birds.remove(bird) 

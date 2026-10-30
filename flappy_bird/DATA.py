@@ -15,6 +15,8 @@ OBSTACLE_GAP_HEIGHT: int = 100 # px
 
 GAP_BETWEEN_OBSTACLES: int = 100 # px
 
+MAX_SCORE: int = 100 # obstacles; training stops a run here
+
 BACKGROUND_COLOR: tuple[int, int, int] = (0, 0, 0)
 OBSTACLE_COLOR: tuple[int, int, int] = (100, 100, 100)
 TEXT_COLOR: tuple[int, int, int] = (150, 150, 150)

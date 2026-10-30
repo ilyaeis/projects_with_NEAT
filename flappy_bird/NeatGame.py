@@ -41,7 +41,7 @@ class NeatWindow(Window):
                     bird.reward(5)
                 obstacle_ind = 1
                 
-            for bird in self.birds:
+            for bird in self.birds[:]:
                 if self.obstacles[obstacle_ind].check_bird_collision(bird) or bird.check_screen_collision():
                     bird.punish(5)
                     self.birds.remove(bird) 
@@ -77,8 +77,8 @@ if __name__ == "__main__":
         neat.DefaultStagnation,
         config_path,
     )
-    #population: neat.Population = neat.Population(config)
-    population: neat.Population = neat.Checkpointer.restore_checkpoint("neat-checkpoint-5")
+    population: neat.Population = neat.Population(config)
+    #population: neat.Population = neat.Checkpointer.restore_checkpoint("neat-checkpoint-5")
     population.add_reporter(neat.StdOutReporter(True))
     population.add_reporter(neat.StatisticsReporter())
     population.add_reporter(neat.Checkpointer(1))

@@ -41,4 +41,4 @@ class NeatBird(Bird):
         self.genome.fitness += reward
         
     def punish(self, punishment: float):
-        self.genome.fitness -+ punishment
+        self.genome.fitness -= punishment
