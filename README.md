@@ -74,3 +74,5 @@ python tools/record_gif.py ping_pong/complete NeatGame:neat_best_play docs/ping_
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+Part of my portfolio: https://ilyaeis.github.io/?go=neat
