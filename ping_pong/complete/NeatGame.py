@@ -43,7 +43,7 @@ class NeatGame(Window):
         Window.on_goal(self)
         
     def check_exit(self) -> bool:
-        Window.check_exit(self)
+        return Window.check_exit(self)
         
     def run(self):
         Window.run(self)

@@ -8,7 +8,7 @@ class Cell:
         else:
             raise ValueError("Either provide (x, y) or a position tuple.")
         
-    def __add__(self, other) -> tuple[int, int]:
+    def __add__(self, other) -> "Cell":
         return Cell(x=self.x + other.x, y=self.y + other.y)
     
     def __eq__(self, other) -> bool:
@@ -20,4 +20,7 @@ class Cell:
             return (self.x, self.y) == other
         else:
             return False
-        
+
+    def __hash__(self) -> int:
+        # needed to keep cells in a set (fast collision checks)
+        return hash((self.x, self.y))

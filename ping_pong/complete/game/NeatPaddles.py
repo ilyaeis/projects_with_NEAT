@@ -8,8 +8,10 @@ class NeatLPaddle(LeftPaddle):
         self.genome = genome
         
     def update(self, ball_x: int, ball_y: int, ball_dx: int, ball_dy: int):
+        # The network was trained as the right paddle. Mirror the inputs so
+        # the same network can play on the left side.
         output = self.net.activate(
-                (self.y - self.height // 2, self.width - ball_x, ball_y, ball_dx, ball_dy))
+                (self.y - self.height // 2, ball_x - self.width, ball_y, -ball_dx, ball_dy))
         decision = output.index(max(output))
         
         if decision == 0:
@@ -39,9 +41,10 @@ class NeatRPaddle(RightPaddle):
         self.net = neat.nn.FeedForwardNetwork.create(genome, config)
         self.genome = genome
         
-    def update(self, ball_x: int, ball_y: int):
+    def update(self, ball_x: int, ball_y: int, ball_dx: int, ball_dy: int):
+        # Same 5 inputs as train/NeatPaddles.py, so the trained network fits.
         output = self.net.activate(
-                (self.y - self.height // 2, self.x - ball_x, ball_y))
+                (self.y - self.height // 2, self.x - ball_x, ball_y, ball_dx, ball_dy))
         decision = output.index(max(output))
         
         if decision == 0:

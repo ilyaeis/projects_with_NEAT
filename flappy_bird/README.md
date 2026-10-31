@@ -28,6 +28,14 @@ An AI-powered Flappy Bird game where the bird learns to navigate through obstacl
   - `+0.01` per frame survived
 - Punishments:
   - `-5` for collisions with obstacles or screen boundaries
+- Each genome flies 3 runs per generation and keeps its worst score, so one lucky run with easy gaps does not count.
+- A run stops at 100 passed obstacles (`MAX_SCORE` in `DATA.py`), so a perfect bird cannot run forever.
+
+### Run
+- `python BestNeatBirdGame.py`: train headless for up to 50 generations, save `winner.pkl` and `fitness_history.csv`, then watch the winner.
+- `python BestNeatBirdGame.py --replay`: only watch the saved `winner.pkl`.
+- `python NeatGame.py`: watch the training live (slower).
+- `python Game.py`: play yourself (press `J` to jump).
 
 ### Obstacle Mechanics
 - Obstacles spawn continuously with randomized gaps
@@ -39,10 +47,11 @@ An AI-powered Flappy Bird game where the bird learns to navigate through obstacl
 
 | File Name             | Description                                                                 |
 |-----------------------|-----------------------------------------------------------------------------|
-| `BestNeatBirdGame.py` | Main entry point for running the NEAT-based Flappy Bird simulation.         |
+| `BestNeatBirdGame.py` | Main entry point: headless training, then replay of the saved winner.      |
 | `Bird.py`             | Defines the bird's behavior, including physics and NEAT-controlled logic.   |
 | `config.txt`          | Configuration file for NEAT hyperparameters and network settings.           |
 | `DATA.py`             | Centralized configuration for game physics, colors, and dimensions.         |
+| `winner.pkl`          | The saved best genome.                                                      |
 | `Game.py`             | Implements the manual Flappy Bird game with Pygame visualization.           |
 | `NeatGame.py`         | Visualizes the NEAT training process with Pygame.                           |
 | `NeatSimulation.py`   | Runs the NEAT training loop without visualization for faster evolution.     |

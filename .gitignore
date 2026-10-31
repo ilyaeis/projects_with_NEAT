@@ -9,3 +9,6 @@ neat-checkpoint-*
 
 # Ignore pytest cache
 .pytest_cache/
+# Local Python environment
+.env/
+.venv/

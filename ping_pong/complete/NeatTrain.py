@@ -72,12 +72,15 @@ def neat_train(func: callable, epochs = 50, checkpoint_num: int = 0):
     else:
         population = get_population_from_checkpoint(checkpoint_num)
     population.add_reporter(neat.StdOutReporter(True))
-    population.add_reporter(neat.StatisticsReporter())
+    stats: neat.StatisticsReporter = neat.StatisticsReporter()
+    population.add_reporter(stats)
     population.add_reporter(neat.Checkpointer(1))
     
     winner = population.run(func, epochs)
     with open("winner.neat", "wb") as f:
         pickle.dump(winner, f)
+    # best and mean fitness per generation, for the plot in the README
+    stats.save_genome_fitness(delimiter=",", filename="fitness_history.csv")
 
 def get_population_from_checkpoint(checkpoint_num: int):
     file_name: str = f"neat-checkpoint-{checkpoint_num}"
